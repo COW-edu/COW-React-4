@@ -1,0 +1,24 @@
+div {
+  box-sizing: border-box;
+}
+
+.list {
+  text-align: left;
+  padding: auto;
+  border-bottom: 1px solid gray;
+}
+
+.black-nav {
+  background: black;
+  width: 100%;
+  display: flex;
+  color: white;
+  padding: 20px;
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background: #eeee;
+  text-align: left;
+}
