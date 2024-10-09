@@ -1,12 +1,15 @@
 import React from "react";
 import TodoItem from "./Todoitem";
 
-function TodoBoard(props){
-    console.log("todoBoard",props.todolist)
-    return (
-        <div>
-            {props.todolist.map((item)=><TodoItem item={item}/>)}
-        </div>
-    )
+function TodoBoard({ todolist }) {
+  console.log("todoBoard", todolist);
+  return (
+    <div>
+      {todolist.map((item, index) => (
+        <TodoItem key={index} item={item} />
+      ))}
+    </div>
+  );
 }
+
 export default TodoBoard;

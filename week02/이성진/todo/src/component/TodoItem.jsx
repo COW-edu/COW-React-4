@@ -1,12 +1,11 @@
 import React from "react";
 
-function TodoItem(props){
-
-    return(
-        <div className="todo-item">
-            {props.item}
-        </div>
-    )
+function TodoItem({ item }) {
+  return (
+    <div className="todo-item">
+      {item}
+    </div>
+  );
 }
 
-export default TodoItem
+export default TodoItem;
