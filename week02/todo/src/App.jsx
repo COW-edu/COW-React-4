@@ -5,9 +5,9 @@ function App() {
     const [todoList, setTodoList] = useState([]);
 
     const deleteTodo = (index) => {
-				const afterDeleteTodo = [...todoList];
+	const afterDeleteTodo = [...todoList];
         afterDeleteTodo.splice(index, 1);
-				setTodoList(afterDeleteTodo);
+	setTodoList(afterDeleteTodo);
     }
     const addList = (event) => {
         event.preventDefault();
