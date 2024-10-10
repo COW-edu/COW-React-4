@@ -49,6 +49,7 @@ function App() {
             onClick={() => {
               if (inputValue.trim() == '') {
                 alert('빈 입력값입니다.');
+                return;
               } else {
                 //checked로
                 const newTodo = { checked: false, text: inputValue, id };
