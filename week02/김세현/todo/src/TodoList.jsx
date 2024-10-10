@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
 
-const TodoList = () => {
+function TodoInput({ inputValue, setInputValue, addTodo }) {
+  return (
+    <div>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="할 일을 입력하세요"
+      />
+      <button onClick={addTodo}>추가</button>
+    </div>
+  );
+}
+
+function TodoItem({ todo, index, removeTodo }) {
+  return (
+    <li>
+      {todo}
+      <button onClick={() => removeTodo(index)}>삭제</button>
+    </li>
+  );
+}
+
+function TodoList({ todos, removeTodo }) {
+  return (
+    <ul>
+      {todos.map((todo, index) => (
+        <TodoItem key={index} todo={todo} index={index} removeTodo={removeTodo} />
+      ))}
+    </ul>
+  );
+}
+
+function TodoApp() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
   const addTodo = () => {
-    if (inputValue.trim()) {
-      setTodos([...todos, inputValue]);
-      setInputValue('');
-    }
+    if (inputValue.trim() === '') return;
+    setTodos([...todos, inputValue]);
+    setInputValue('');
   };
 
   const removeTodo = (index) => {
@@ -19,22 +51,10 @@ const TodoList = () => {
   return (
     <div>
       <h1>Todo List</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="할 일을 적으세요"
-      />
-      <button onClick={addTodo}>Add</button>
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            {todo} <button onClick={() => removeTodo(index)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+      <TodoInput inputValue={inputValue} setInputValue={setInputValue} addTodo={addTodo} />
+      <TodoList todos={todos} removeTodo={removeTodo} />
     </div>
   );
-};
+}
 
-export default TodoList;
+export default TodoApp;
