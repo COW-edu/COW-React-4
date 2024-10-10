@@ -68,7 +68,7 @@ ul li {
   padding-bottom: 30px;
 }
 /* 각각 리스트 앞에다가 체크표시하기 위해 클래스 탈부착*/
-ul li::before {
+ul div::before {
   left: 0;
   content: '';
   position: absolute;
@@ -79,11 +79,11 @@ ul li::before {
   background-size: cover;
   background-position: center;
 }
-ul li.checked {
+ul div.checked {
   color: red;
   text-decoration: line-through;
 }
-ul li.checked::before {
+ul div.checked::before {
   content: '';
   background-image: url(IMG/checked.png);
   position: absolute;
