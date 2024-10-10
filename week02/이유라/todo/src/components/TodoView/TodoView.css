@@ -1,0 +1,50 @@
+.ListWrapper {
+  width: 500px;
+  height: 380px;
+
+  margin: 10px 0 0 0;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #76b8ff;
+}
+
+.TodoBox {
+  height: 270px;
+  overflow: scroll;
+}
+
+.TodoBox::-webkit-scrollbar {
+  width: 1px;
+  background: none;
+}
+
+.title {
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.TodoRow {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 30px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.TodoName {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.TodoDeleteBtn {
+  background-color: #fff;
+  border: none;
+}
+.TodoDeleteBtn:hover {
+  background-color: #e7ebff;
+}
