@@ -1,6 +1,6 @@
 body {
   box-sizing: border-box;
-  background-color: whitesmoke;
+  background-color: rgb(208, 225, 176);
   border: 2px darkgray;
 }
 
@@ -10,12 +10,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  border: 2px darkgray;
-}
+  background-color: rgb(208, 225, 176);
+  border: 2px rgb(196, 212, 122);
+} 
 
 .main {
-  background-color: gray;
+  background-color: rgb(237, 237, 216);
   padding: 30px;
   border-radius: 10px;
   width: 350px;
@@ -35,8 +35,8 @@ body {
 .inputBtn {
   width: 85%;
   padding: 10px;
-  background-color: green;
-  color: white;
+  background-color: rgb(193, 193, 172);
+  color: black;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
@@ -44,32 +44,40 @@ body {
 }
 
 .inputBtn:hover {
-  background-color: yellowgreen;
+  background-color: rgb(137, 203, 137);
 }
 
 .deleteBtn {
-  width: 85%;
-  padding: 10px;
-  background-color: red;
+  width: auto; 
+  padding: 5px 10px;
+  background-color: rgb(152, 152, 129);
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px 0;
-  font-size: 16px;
-}
+  margin: 5px;
+  font-size: 14px; 
 
+
+}
 .deleteBtn:hover {
-  background-color: #b41537;
+  background-color: #d691a0;
 }
 
 .todo-item{
+  display: flex;
+  position: relative;
+  align-items: center;
   border: 2px solid rgba(45, 45, 50, 0.048);
   width: 300px;
-  height: 50px;
+  height: 40px;
   color: black;
-  background-color: beige;
+  background-color: rgb(202, 202, 184);
   border-radius: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
-  
+  margin-left: 22px;
+}
+.todo-text{
+  flex-grow: 1; 
+  text-align: center;
 }

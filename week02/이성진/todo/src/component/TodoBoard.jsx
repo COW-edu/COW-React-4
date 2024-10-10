@@ -1,15 +1,15 @@
 import React from "react";
-import TodoItem from "./Todoitem";
+import TodoItem from "./TodoItem";
 
-function TodoBoard({ todolist }) {
-  console.log("todoBoard", todolist);
+function TodoBoard({ todolist, deleteItem }) {
   return (
     <div>
       {todolist.map((item, index) => (
-        <TodoItem key={index} item={item} />
+        <TodoItem key={index} item={item} index={index} deleteItem={deleteItem} />
       ))}
     </div>
   );
 }
 
 export default TodoBoard;
+
