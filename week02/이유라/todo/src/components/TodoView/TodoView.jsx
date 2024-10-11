@@ -6,10 +6,13 @@ const TodoView = ({ todos, deleteTodo }) => {
     <div className="ListWrapper">
       <p className="Title">✨ Today&apos;s todo ✨</p>
       <div className="TodoBox">
-        {todos.map((todo, index) => (
-          <div key={index} className="TodoRow">
-            <p className="TodoName">{todo}</p>
-            <button className="TodoDeleteBtn" onClick={() => deleteTodo(index)}>
+        {todos.map((todo) => (
+          <div key={todo.id} className="TodoRow">
+            <p className="TodoName">{todo.content}</p>
+            <button
+              className="TodoDeleteBtn"
+              onClick={() => deleteTodo(todo.id)}
+            >
               삭제
             </button>
           </div>
@@ -20,7 +23,12 @@ const TodoView = ({ todos, deleteTodo }) => {
 };
 
 TodoView.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      content: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   deleteTodo: PropTypes.func.isRequired,
 };
 

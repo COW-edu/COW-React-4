@@ -5,21 +5,24 @@ import "./TodoList.css";
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([]);
+  const [todoId, setTodoId] = useState(0);
 
-  const addTodo = (newTodo) => {
+  const addNewTodo = (newTodo) => {
     if (newTodo.trim() != "") {
-      setTodoList([...todoList, newTodo]);
+      const newTodoItem = { id: todoId, content: newTodo };
+      setTodoList([...todoList, newTodoItem]);
+      setTodoId(todoId + 1);
     }
   };
 
-  const deleteTodo = (indexToDelete) => {
-    setTodoList(todoList.filter((_, index) => index !== indexToDelete));
+  const deleteTodo = (idToDelete) => {
+    setTodoList(todoList.filter((todo) => todo.id !== idToDelete));
   };
 
   return (
     <>
       <p className="Title">오늘의 할 일</p>
-      <TodoWriting addTodo={addTodo} />
+      <TodoWriting addTodo={addNewTodo} />
       <TodoView todos={todoList} deleteTodo={deleteTodo} />
     </>
   );
