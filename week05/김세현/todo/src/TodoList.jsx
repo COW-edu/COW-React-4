@@ -34,7 +34,7 @@ function TodoList({ todos, removeTodo }) {
 }
 
 function TodoApp() {
-    const [todos, setTodos] = useState(() => {
+  const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem('todos');
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
