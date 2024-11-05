@@ -23,6 +23,7 @@ a:hover {
 }
 
 body {
+  background-color:white;
   margin: 0;
   place-items: center;
   min-width: 320px;
@@ -30,7 +31,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 6em;
   line-height: 1.1;
 }
 
