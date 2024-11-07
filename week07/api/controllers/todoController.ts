@@ -20,6 +20,18 @@ export const todoController = {
       res.status(404).json({ message: "Todo를 찾지 못했습니다." });
     }
   },
+  updateContentTodo: (req: Request, res: Response): void => {
+    const { id } = req.params;
+    const { content } = req.body;
+    const updateTodo = TodoModel.conentUpdate(parseInt(id), content);
+    if (updateTodo) {
+      res.json(updateTodo);
+    } else {
+      res
+        .status(404)
+        .json({ message: `${id}의 content를 수정하지 못했습니다.` });
+    }
+  },
   deleteTodo: (req: Request, res: Response): void => {
     const { id } = req.params;
     const deleteTodo = TodoModel.delete(parseInt(id));

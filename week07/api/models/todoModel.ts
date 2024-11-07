@@ -35,6 +35,15 @@ export const TodoModel = {
       return todo;
     }
   },
+  conentUpdate: (id: number, content: string): Todo | null => {
+    const todos = readTodosFromFile();
+    const todo = todos.find((todo) => todo.id === id);
+    if (todo) {
+      todo.content = content;
+      writeTodosToFile(todos);
+      return todo;
+    }
+  },
   delete: (id: number): Todo | null => {
     const todos = readTodosFromFile();
     const index = todos.findIndex((todo) => todo.id === id);
