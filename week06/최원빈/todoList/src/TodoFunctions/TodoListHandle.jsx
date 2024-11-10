@@ -10,15 +10,17 @@ function TodoListHandle(props) {
       {todo.map((item, index) => (
         <li
           key={index}
-          className="flex justify-between w-full items-center pb-8 cursor-pointer "
+          className="flex justify-between w-full items-center pb-8 cursor-pointer relative "
         >
           <div
             className={`${
-              item.checked ? 'checked text-red-500 line-through' : ''
+              item.checked
+                ? 'checked line-through text-red-600'
+                : 'unchecked listItem'
             }`}
             onClick={() => toggleCheck(index)}
           >
-            {item.text}
+            <span className="p-10 hover:text-purple-800">{item.text}</span>
           </div>
           <span
             className="cursor-pointer text-red-500"

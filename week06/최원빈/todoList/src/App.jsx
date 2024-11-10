@@ -8,21 +8,20 @@ function App() {
 
   //로컬스토로지의 고유한 아이디를 담는 state
   const [id, setId] = useState(0);
+  //로컬스토로지의 Key를 따로 빼놓음
   const localStorageKey = 'todos';
 
-  //최초 useEffect
-  //최상위 컴포넌트가 마운트 될때, 로컬 스토리지에서 데이터를 가져오는 UseEffect
+  //최초 useEffect <최초 마운트 시 --> 로컬 스토리지에서 데이터를 가져오는 UseEffect>
   useEffect(() => {
     const storedTodos = localStorage.getItem(localStorageKey);
     const storedTodosObject =
       storedTodos !== null ? JSON.parse(storedTodos) : [];
 
     //고유한 아이디 (JSON.parse 하는 순간) todo의 object형이 되었으므로
-
     setTodo(storedTodosObject);
   }, []);
 
-  //스토리지에 저장하는 함수
+  //스토리지에 저장하는 함수 (JSON 형태로 바꾼 형태로 key,value 쌍으로 저장.)
   const saveTodos = (args) => {
     localStorage.setItem(localStorageKey, JSON.stringify(args));
   };
