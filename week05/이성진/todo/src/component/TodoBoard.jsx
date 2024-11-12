@@ -3,9 +3,9 @@ import TodoItem from "./TodoItem";
 
 function TodoBoard({ todolist, deleteItem }) {
   return (
-    <div>
-      {todolist.map((item, index) => (
-        <TodoItem key={index} item={item} index={index} deleteItem={deleteItem} />
+    <div className="space-y-3.5">
+      {todolist.map((item) => (
+        <TodoItem key={item.id} item={item} deleteItem={deleteItem} />
       ))}
     </div>
   );
