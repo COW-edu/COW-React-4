@@ -2,7 +2,7 @@ import { useState } from "react";
 import TodoWriting from "../components/TodoWriting/TodoWriting";
 import TodoView from "../components/TodoView/TodoView";
 
-const Todo = () => {
+const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
   const [todoId, setTodoId] = useState(0);
 
@@ -27,4 +27,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default TodoList;
