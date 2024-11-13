@@ -1,13 +1,8 @@
 {
   "todos": [
     {
-      "id": 2,
-      "content": "경영정보",
-      "isComplete": false
-    },
-    {
-      "id": 3,
-      "content": "EC4",
+      "id": 1,
+      "content": "경영과학",
       "isComplete": false
     }
   ]
