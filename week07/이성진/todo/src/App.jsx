@@ -6,57 +6,44 @@ import './App.css';
 function App() {
   const [inputValue, setInputValue] = useState('');
   const [todolist, setTodolist] = useState([]);
-  const url = ('http://localhost:8080/todos')
+  const url = 'http://localhost:8080/todos';
+
   useEffect(() => {
     fetchTodos();
   }, []);
 
-  const fetchTodos = async () => {
-    try {
-      const response = await axios.get(url);
-      const todos = Array.isArray(response.data) ? response.data : [];
-      setTodolist(todos);
-    } catch (error) {
-      setTodolist([]); 
-    }
+  const fetchTodos = () => {
+    axios.get(url)
+      .then(response => setTodolist(Array.isArray(response.data) ? response.data : []))
+      .catch(() => setTodolist([]));
   };
-  
-  const addItem = async () => {
+
+  const addItem = () => {
     if (inputValue.trim()) {
-      try {
-        const response = await axios.post(url, { content: inputValue });
-        setTodolist([...todolist, response.data]);
-        setInputValue('');
-      } catch (error) {
-        console.error('할 일을 추가하는 데 실패했습니다:', error);
-      }
+      axios.post(url, { content: inputValue })
+        .then(response => {
+          setTodolist([...todolist, response.data]);
+          setInputValue('');
+        })
+        .catch(error => console.error('할 일을 추가하는 데 실패했습니다:', error));
     }
   };
 
-  const deleteItem = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8080/todos/${id}`);
-      setTodolist(todolist.filter((item) => item.id !== id));
-    } catch (error) {
-      console.error('할 일을 삭제하는 데 실패했습니다:', error);
-    }
+  const deleteItem = (id) => {
+    axios.delete(`${url}/${id}`)
+      .then(() => setTodolist(todolist.filter(item => item.id !== id)))
+      .catch(error => console.error('할 일을 삭제하는 데 실패했습니다:', error));
   };
 
-  const toggleComplete = async (id) => {
-    try {
-      const todoToUpdate = todolist.find(item => item.id === id);
-      const response = await axios.put(`http://localhost:8080/todos/${id}`, {
-        ...todoToUpdate,
-        isComplete: !todoToUpdate.isComplete
-      });
-      setTodolist(todolist.map((item) => 
-        item.id === id ? response.data : item
-      ));
-    } catch (error) {
-      console.error('할 일 완료 상태를 변경하는 데 실패했습니다:', error);
-    }
+  const toggleComplete = (id) => {
+    const todoToUpdate = todolist.find(item => item.id === id);
+    axios.put(`${url}/${id}`, { ...todoToUpdate, isComplete: !todoToUpdate.isComplete })
+      .then(response => {
+        setTodolist(todolist.map(item => item.id === id ? response.data : item));
+      })
+      .catch(error => console.error('할 일 완료 상태를 변경하는 데 실패했습니다:', error));
   };
-   
+
   return (
     <div className="bg-neutral-50 rounded-lg p-8 shadow-md ">
       <h1 className="font-mono text-center text-3xl mb-6 text-gray-700 shadow-md rounded-full">TODO LIST</h1>
@@ -85,3 +72,4 @@ function App() {
 }
 
 export default App;
+
