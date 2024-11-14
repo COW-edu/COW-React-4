@@ -32,7 +32,7 @@ function App() {
   const deleteItem = (id) => {
     axios.delete(`${url}/${id}`)
       .then(() => setTodolist(todolist.filter(item => item.id !== id)))
-      .catch(error => console.error('할 일을 삭제하는 데 실패했습니다:', error));
+      .catch(error => console.error('TODO 삭제 실패!! 오류를 확인하세요:', error));
   };
 
   const toggleComplete = (id) => {
@@ -41,13 +41,30 @@ function App() {
       .then(response => {
         setTodolist(todolist.map(item => item.id === id ? response.data : item));
       })
-      .catch(error => console.error('할 일 완료 상태를 변경하는 데 실패했습니다:', error));
+      .catch(error => console.error('TODO 상태 업데이트 실패!! 오류를 확인하세요:', error));
+  };
+
+  const updateItem = (id, newContent) => {
+    const todoToUpdate = todolist.find(item => item.id === id);
+    axios.put(`${url}/${id}`, { ...todoToUpdate, content: newContent })
+      .then(response => {
+        setTodolist(todolist.map(item => item.id === id ? response.data : item));
+      })
+      .catch(error => console.error('TODO 수정 실패!! 오류를 확인하세요:', error));
   };
 
   return (
-    <div className="bg-neutral-50 rounded-lg p-8 shadow-md ">
-      <h1 className="font-mono text-center text-3xl mb-6 text-gray-700 shadow-md rounded-full">TODO LIST</h1>
-      <div className="flex mb-6">
+    <div 
+      className="bg-neutral-50 rounded-lg p-8 shadow-md "
+    >
+      <h1 
+        className="font-mono text-center text-3xl mb-6 text-gray-700 shadow-md rounded-full"
+      >
+        TODO LIST
+      </h1>
+      <div 
+        className="flex mb-6"
+      >
         <input
           className="text-gray-800 placeholder-gray-500 text-center rounded-lg px-4 py-2 mr-2 shadow-sm focus:outline-none"
           value={inputValue}
@@ -66,6 +83,7 @@ function App() {
         todolist={todolist} 
         deleteItem={deleteItem} 
         toggleComplete={toggleComplete}
+        updateItem={updateItem}
       />
     </div>
   );
