@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.checked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  background-image: url('/IMG/checked.png');
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+}
+
+.unchecked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  background-image: url('/IMG/radio.png');
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+}
