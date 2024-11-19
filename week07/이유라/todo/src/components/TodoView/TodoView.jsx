@@ -22,59 +22,49 @@ const TodoView = ({ todos, deleteTodo, updateTodo, checkTodo }) => {
         {todos.map((todo) => (
           <div
             key={todo.id}
-            className="w-4/5 flex justify-between items-center p-2.5 my-5 mx-auto "
+            className="w-4/5 flex justify-between items-center p-2.5 my-5 mx-auto"
           >
+            <input
+              type="checkbox"
+              className="w-5 h-5 -ml-10 rounded focus:outline-none"
+              checked={todo.isComplete}
+              onChange={() => {
+                if (isEdited !== todo.id) {
+                  checkTodo(todo.id);
+                }
+              }}
+            />
+
             {isEdited === todo.id ? (
               <input
                 value={editedContent}
                 onChange={(e) => setEditedContent(e.target.value)}
-                className="text-lg font-semibold"
-                onClick={() => checkTodo(todo.id)}
-                checked={todo.isComplete}
+                className="text-lg font-semibold ml-3"
               />
             ) : (
-              <>
-                <input
-                  type="checkbox"
-                  className="w-5 h-5 -ml-10 ppearance-none rounded-md focus:outline-none  "
-                  checked={todo.isComplete}
-                  onChange={() => checkTodo(todo.id)}
-                />
-                <p className="text-lg font-semibold -ml-5">{todo.content}</p>
-              </>
+              <p className="text-lg font-semibold ml-3">{todo.content}</p>
             )}
+
             <div>
-              {isEdited === todo.id ? (
-                <>
-                  <button
-                    className="bg-white border-none hover:bg-blue-100 px-4 py-1 rounded mr-4"
-                    onClick={() => editSaving(todo.id, todo.isComplete)}
-                  >
-                    저장
-                  </button>
-                  <button
-                    className="bg-white border-none hover:bg-blue-100 px-4 py-1 rounded"
-                    onClick={() => setIsEdited(null)}
-                  >
-                    취소
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    className="bg-white border-none hover:bg-blue-100 px-4 py-1 rounded mr-4"
-                    onClick={() => deleteTodo(todo.id)}
-                  >
-                    삭제
-                  </button>
-                  <button
-                    className="bg-white border-none hover:bg-blue-100 px-4 py-1 rounded"
-                    onClick={() => editTodo(todo)}
-                  >
-                    수정
-                  </button>
-                </>
-              )}
+              <button
+                className="bg-white border-none hover:bg-blue-100 px-4 py-1 rounded mr-4"
+                onClick={() =>
+                  isEdited === todo.id
+                    ? editSaving(todo.id, todo.isComplete)
+                    : deleteTodo(todo.id)
+                }
+              >
+                {isEdited === todo.id ? "저장" : "삭제"}
+              </button>
+
+              <button
+                className="bg-white border-none hover:bg-blue-100 px-4 py-1 rounded"
+                onClick={() =>
+                  isEdited === todo.id ? setIsEdited(null) : editTodo(todo)
+                }
+              >
+                {isEdited === todo.id ? "취소" : "수정"}
+              </button>
             </div>
           </div>
         ))}
