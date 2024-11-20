@@ -1,29 +1,3 @@
 {
-  "todos": [
-    {
-      "id": 1,
-      "content": "첫번째 할일",
-      "isComplete": true
-    },
-    {
-      "id": 2,
-      "content": "ㅁㄴㅇㄹㅁㄴㅇㄹ",
-      "isComplete": false
-    },
-    {
-      "id": 3,
-      "content": "ㅁㄴㅇㄹㅁㄴㅇㄹ",
-      "isComplete": true
-    },
-    {
-      "id": 5,
-      "content": "asdf",
-      "isComplete": false
-    },
-    {
-      "id": 6,
-      "content": "ㅁㄴㅇ",
-      "isComplete": false
-    }
-  ]
+
 }
