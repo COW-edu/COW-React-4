@@ -5,7 +5,7 @@ import React from "react";
 const PaintTodo = ({ inputValue, setInputValue,todoList, addList, deleteTodo }) => {
     
    return(
-<div class='flex flex-col justify-center items-center border-blue-400 border-2 h-full'>
+    <div class='flex flex-col justify-center items-center border-blue-400 border-2 h-full'>
         <h1 class='text-2xl border-white bg-blue-400 text-center text-white p-4 m-4 shadow-lg w-96 rounded-lg border-2'>TODO 리스트</h1>
         <form class='text-lg border-blue-400 border-2 rounded-lg p-2 mb-2' onSubmit={addList}>
             <input class='p-2 m-2 w-72 border-solid rounded-lg h-10'
@@ -26,6 +26,7 @@ const PaintTodo = ({ inputValue, setInputValue,todoList, addList, deleteTodo }) 
             </ul>
         </div>
     </div>
+
    )
 }
 
