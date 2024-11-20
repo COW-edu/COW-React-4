@@ -1,9 +1,0 @@
-{
-  "todos": [
-    {
-      "id": 1,
-      "content": "123",
-      "isComplete": true
-    }
-  ]
-}
