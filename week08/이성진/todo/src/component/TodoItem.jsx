@@ -13,7 +13,7 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
 
     const handleSave = async () => {
         try {
-            await updateItem(item.id, editValue, token);
+            await updateItem(item.id, editValue, item.isComplete, token);
             setIsEditing(false);
         } catch (error) {
             console.error("아이템 수정 실패", error);
@@ -41,9 +41,16 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
     return (
         <div
             className={`flex justify-between items-center rounded-md px-3 py-2 shadow-sm hover:shadow-md text-sm transition-colors ${
-                item.isComplete ? 'bg-green-100' : 'bg-pastel-blue'
+                item.isComplete ? "bg-green-100" : "bg-pastel-blue"
             }`}
         >
+            <input
+                type="checkbox"
+                checked={item.isComplete}
+                onChange={handleComplete}
+                className="mr-4"
+            />
+
             {isEditing ? (
                 <input
                     type="text"
@@ -52,12 +59,14 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
                     className="text-gray-800 px-2 py-1 rounded-md w-full mr-2 font-sans"
                 />
             ) : (
-                <span className={`text-gray-800 ${item.isComplete ? 'line-through' : ''} font-sans`}>
+                <span
+                    className={`text-gray-800 ${item.isComplete ? "line-through" : ""} font-sans`}
+                >
                     {item.content}
                 </span>
             )}
 
-            <div>
+            <div className="flex items-center space-x-2">
                 {isEditing ? (
                     <>
                         <button
@@ -76,13 +85,7 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
                 ) : (
                     <>
                         <button
-                            className={`text-black bg-transparent hover:bg-gray-400 rounded-full transition-colors mr-2 font-sans focus:outline-none`}
-                            onClick={handleComplete}
-                        >
-                            {item.isComplete ? '취소' : '완료'}
-                        </button>
-                        <button
-                            className="text-black bg-transparent hover:bg-gray-400 mr-2 font-sans focus:outline-none"
+                            className="text-black bg-transparent hover:bg-gray-400 rounded-full transition-colors mr-2 font-sans focus:outline-none"
                             onClick={handleEdit}
                         >
                             수정

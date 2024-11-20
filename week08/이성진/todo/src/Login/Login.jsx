@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { setCookie , getCookie } from "../utils/cookies";
+import axios from "../utils/axiosInstancs";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/users/login", { email, password });
-            localStorage.setItem("token", response.data.token);
+            const response = await axios.post("/users/login", { email, password });
+            const accessToken = response.headers["authorization"];
+            setCookie("accessToken", accessToken, { path: "/", maxAge: 3600 });
             alert("로그인 성공!");
             navigate("/");
         } catch (error) {
@@ -44,7 +46,7 @@ function Login() {
                 />
                 <button
                     onClick={handleLogin}
-                    disabled={!email.includes('@') || !email.includes('.') || password.length < 8}
+                    disabled={!email.includes("@") || password.length < 8}
                     className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
                     로그인
@@ -55,6 +57,7 @@ function Login() {
 }
 
 export default Login;
+
 
 
 
