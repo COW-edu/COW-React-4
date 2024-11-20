@@ -5,7 +5,8 @@ const BASE_URL = "http://localhost:8080";
 export const getTodos = async () => {
   try {
     const res = await axios.get(`${BASE_URL}/todos`);
-    return res.data;
+    console.log("확인", res.data.data);
+    return res.data.data;
   } catch (err) {
     console.log("리스트를 불러올 수 없습니다.", err);
   }
@@ -32,12 +33,10 @@ export const completeTodos = async (id) => {
 
 export const contentUpdateTodos = async (id, content, isComplete) => {
   try {
-    // console.log("보내기전:", isComplete);
     const res = await axios.put(`${BASE_URL}/todos/contents/${id}`, {
       content,
       isComplete,
     });
-    // console.log("보낸 후: ", isComplete);
     return res.data;
   } catch (err) {
     console.log("투두 수정에 실패했습니다! ", err);
