@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setCookie , getCookie } from "../utils/cookies";
+import { setCookie } from "../utils/cookies";
 import axios from "../utils/axiosInstancs";
 
 function Login() {
@@ -15,7 +15,7 @@ function Login() {
             const accessToken = response.headers["authorization"];
             setCookie("accessToken", accessToken, { path: "/", maxAge: 3600 });
             alert("로그인 성공!");
-            navigate("/");
+            navigate("/todos");
         } catch (error) {
             if (error.response && error.response.data) {
                 setErrorMessage(error.response.data.message);

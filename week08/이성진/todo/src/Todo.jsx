@@ -30,15 +30,18 @@ function Todo() {
     };
     
     const toggleComplete = async (id) => {
-        const todoToUpdate = todolist.find(item => item.id === id);
+        const todoToUpdate = todolist.find((item) => item.id === id);
         try {
-            const response = await axios.put(`${url}/${id}`, { isComplete: !todoToUpdate.isComplete }, { headers: { Authorization: `Bearer ${token}` } });
-            setTodolist(todolist.map(item => (item.id === id ? response.data.data : item)));
+            await axios.put(
+                `${url}/${id}`,
+                { isComplete: !todoToUpdate.isComplete },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            await fetchTodos();
         } catch (error) {
-            console.error('완료 상태 변경 실패', error);
+            console.error("완료 상태 변경 실패", error);
         }
     };
-    
 
     const addItem = async () => {
         if (inputValue.trim()) {

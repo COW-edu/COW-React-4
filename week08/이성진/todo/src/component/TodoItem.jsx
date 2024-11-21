@@ -7,13 +7,17 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
 
     const token = localStorage.getItem("token");
 
-    const handleEdit = () => {
-        setIsEditing(true);
-    };
+    if (!token) {
+        console.error("유효한 토큰이 없습니다. 다시 로그인하세요.");
+        alert("로그인이 필요합니다.");
+        return null;
+    }
+
+    const handleEdit = () => setIsEditing(true);
 
     const handleSave = async () => {
         try {
-            await updateItem(item.id, editValue, item.isComplete, token);
+            await updateItem(item.id, editValue);
             setIsEditing(false);
         } catch (error) {
             console.error("아이템 수정 실패", error);
@@ -25,18 +29,9 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
         setIsEditing(false);
     };
 
-    const handleComplete = async () => {
-        try {
-            await axios.put(
-                `http://localhost:8080/todos/${item.id}`,
-                { isComplete: !item.isComplete },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-            toggleComplete(item.id);
-        } catch (error) {
-            console.error("완료 상태 토글 실패", error);
-        }
-    };
+    const handleComplete = () => toggleComplete(item.id);
+
+    const handleDelete = () => deleteItem(item.id);
 
     return (
         <div
@@ -92,7 +87,7 @@ function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
                         </button>
                         <button
                             className="text-black bg-transparent hover:bg-gray-400 rounded-full p-1 transition-colors text-xs font-sans focus:outline-none"
-                            onClick={() => deleteItem(item.id)}
+                            onClick={handleDelete}
                         >
                             X
                         </button>
