@@ -23,6 +23,7 @@ function SignUp() {
         } catch (error) {
             if (error.response && error.response.data) {
                 setErrorMessage(error.response.data.message);
+                alert("회원가입 실패!! 이미 존재하는 계정이거나 서버의 문제가 발생했습니다 다시 시도하세요!")
             } else {
                 setErrorMessage("회원가입 중 문제가 발생했습니다.");
             }
@@ -31,7 +32,7 @@ function SignUp() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <h2 className="text-3xl font-bold mb-6 text-black">회원가입</h2>
+            <h2 className="text-3xl font-bold mb-6 text-green-600">회원가입</h2>
             <div className="bg-white p-6 rounded-lg shadow-md w-80">
                 {errorMessage && <p className="text-red-500 text-sm mb-4">{errorMessage}</p>}
                 <input
@@ -39,19 +40,19 @@ function SignUp() {
                     placeholder="이메일 입력"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <input
                     type="password"
                     placeholder="비밀번호 입력"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <button
                     onClick={handleSignUp}
                     disabled={!email.includes("@") || password.length < 8}
-                    className="w-full bg-gray-500 text-black py-2 rounded-md hover:bg-blue-100 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+                    className="w-full bg-green-500 text-black py-2 rounded-md hover:bg-green-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
                     회원가입
                 </button>

@@ -31,10 +31,19 @@ function Todo() {
     
     const toggleComplete = async (id) => {
         const todoToUpdate = todolist.find((item) => item.id === id);
+    
+        if (!todoToUpdate) {
+            console.error("투두 항목을 찾을 수 없습니다.");
+            return;
+        }
+    
         try {
             await axios.put(
                 `${url}/${id}`,
-                { isComplete: !todoToUpdate.isComplete },
+                {
+                    ...todoToUpdate, 
+                    isComplete: !todoToUpdate.isComplete,
+                },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             await fetchTodos();
@@ -42,7 +51,8 @@ function Todo() {
             console.error("완료 상태 변경 실패", error);
         }
     };
-
+    
+    
     const addItem = async () => {
         if (inputValue.trim()) {
             try {

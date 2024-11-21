@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 function TodoItem({ item, deleteItem, toggleComplete, updateItem }) {
     const [isEditing, setIsEditing] = useState(false);
